@@ -717,9 +717,10 @@ MAKE_SYSTEM_PROP(ACTIVITY_CUSTOM, 100);
 
     // Get Properties from JavaScript
     NSString *shareText = [TiUtils stringValue:@"text" properties:arguments def:nil];
+    NSString *emailText = [TiUtils stringValue:@"emailText" properties:arguments def:nil];
+    
     NSURL *shareURL = [NSURL URLWithString:[TiUtils stringValue:@"url" properties:arguments def:nil]];
     NSString *removeIcons = [TiUtils stringValue:@"removeIcons" properties:arguments def:nil];
-    NSString *emailText = [TiUtils stringValue:@"emailText" properties:args def:nil];
     BOOL emailIsHTML = [TiUtils boolValue:@"emailIsHTML" properties:arguments def:NO];
 
     NSMutableArray *activityItems = [[NSMutableArray alloc] init];
@@ -750,6 +751,8 @@ MAKE_SYSTEM_PROP(ACTIVITY_CUSTOM, 100);
     
     if(shareText){
         if (emailIsHTML) {
+            NSLog(@"[ERROR] emailIsHTML is true %@", emailText);
+
             NappItemProvider *textItem = [[NappItemProvider alloc] initWithPlaceholderItem:@""];
             textItem.customText = emailText;
             [activityItems addObject:textItem];
@@ -858,7 +861,7 @@ MAKE_SYSTEM_PROP(ACTIVITY_CUSTOM, 100);
     
     // Get Properties from JavaScript
     NSString *shareText = [TiUtils stringValue:@"text" properties:arguments def:@""];
-    NSString *emailText = [TiUtils stringValue:@"emailText" properties:args def:nil];
+    NSString *emailText = [TiUtils stringValue:@"emailText" properties:arguments def:@""];
 	NSURL *shareURL = [NSURL URLWithString:[TiUtils stringValue:@"url" properties:arguments def:nil]];
     NSString *shareImage = [TiUtils stringValue:@"image" properties:arguments def:nil];
     NSString *removeIcons = [TiUtils stringValue:@"removeIcons" properties:arguments def:nil];
@@ -889,6 +892,7 @@ MAKE_SYSTEM_PROP(ACTIVITY_CUSTOM, 100);
     
     if(shareText){
         if (emailIsHTML) {
+            NSLog(@"[ERROR] emailIsHTML is true %@", emailText);
             NappItemProvider *textItem = [[NappItemProvider alloc] initWithPlaceholderItem:@""];
             textItem.customText = emailText;
             [activityItems addObject:textItem];
